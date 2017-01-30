@@ -3,7 +3,6 @@ const express = require("express")
 const validate = require("validate.js")
 
 const mongo = require("../db")
-const ProperURL = require("./properURL")
 
 const router = express.Router()
 
@@ -12,21 +11,28 @@ function randomPIN() {
 }
 
 router
-	.use(ProperURL)
-	.get("/:http//:url", (req, res) => {	
+	.get("*", (req, res) => {	
 		res.setHeader("content-type", "application/json")
 
-		var url = req.params["http"]+"//"+req.params["url"]
+		var url = req.params[0].substr(1)
 		var valid = validate({website: url}, 
 												 {website: {url: true}})
 
 		var obj = {
 			original_url: url,
-			short_code: randomPIN()
+			short_url_code: randomPIN()
 		}
 
-		//simply gerenate a 4 number code thats in an object w
+		if (valid !== undefined) {
+			res.send(valid["website"][0])
+		} else {
+			res.send(obj)
+		}
+
+		//simply gerenate a 4 number code thats in an object
 		//with the orignial url
+
+		//fi the code already exist, just display it
 
 		//whn someone yype in hte shorter code it 
 		//redirects you to the original url
