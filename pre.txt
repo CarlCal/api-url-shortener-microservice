@@ -1,0 +1,20 @@
+
+by parsing in /new/url..
+
+check if url is an valid url
+
+will save the url and a 4 number random code representing that url in a mongo data base
+
+redirect to the index page where it show of the current shortedn website along with the given 4 number code
+
+_ lodash library good for finding ínformation in databases
+
+(only allow on site and pin on the datebase ???)
+(multiple shortend sites on the database ???)
+
+(when to reset the data base ???) 
+(via button or after a time or in a new session ???)
+
+have creation and uasage examples
+
+integerate mongo in Heroku
