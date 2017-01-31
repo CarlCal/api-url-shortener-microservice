@@ -6,9 +6,9 @@ const app = express()
 
 var port = process.env.PORT || 3000
 
-const api = require("./routes/api")
-const index = require("./routes/index")
-const redirect = require("./routes/redirect")
+var api = require("./routes/api")
+var index = require("./routes/index")
+var redirect = require("./routes/redirect")
 
 app
 	.use(bodyParser.json())
