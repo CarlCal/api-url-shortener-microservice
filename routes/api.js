@@ -13,7 +13,6 @@ function randomInt() {
 
 router
 	.get("*", (req, res) => {	
-		res.setHeader("content-type", "application/json")
 
 		var url = req.params[0].substr(1)
 		var valid = validate( {website: url}, {
@@ -30,7 +29,7 @@ router
 		}
 		
 		if (valid) {
-			res.send(JSON.stringify({ error: "You need to enter a real site, with a proper protocol" }))
+			res.json({ error: "You need to enter a real site, with a proper protocol" }).end()
 		} else {
 			obj.original_url = url
 
@@ -40,8 +39,12 @@ router
 			mongo.db.collection("urls")
 				.insert(obj, (err, result) => {
 					if (err) throw err
-						
-					res.send(JSON.stringify({ original_url: obj.original_url, short_url: "https://carl-cal-url-shortener-ms.herokuapp.com/"+obj.url_hash}))
+					
+					if(!result) {
+						res.json({ error: "Could't add that url to the database" })
+					} else {
+						res.json({ original_url: obj.original_url, short_url: "https://carl-cal-url-shortener-ms.herokuapp.com/"+obj.url_hash})
+					}
 				})		
 		}
 	})

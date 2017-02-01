@@ -17,5 +17,3 @@ app
 	.use("/new/", api)
 	.listen(port)
 
-	//display coreect info
-	//send correct error mesaage depending on your fault
