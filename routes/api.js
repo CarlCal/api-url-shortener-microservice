@@ -43,7 +43,7 @@ router
 					if(!result) {
 						res.json({ error: "Could't add that url to the database" })
 					} else {
-						res.json({ original_url: obj.original_url, short_url: "https://carl-cal-url-shortener-ms.herokuapp.com/"+obj.url_hash})
+						res.json({ original_url: obj.original_url, short_url: "https://carlcal-url-shortener-ms.herokuapp.com/"+obj.url_hash})
 					}
 				})		
 		}
