@@ -1,0 +1,27 @@
+
+<html>
+	<header>
+		<title>URL Shortener microservice</title>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	</header>
+	<body>
+		<div id="main" class="container">
+			<h1>API Basejump: URL Shortener</h1>
+			<hr>
+			<div id="text">
+				<h4>Description:</h4> 
+				<p>By adding a website as a parameter after /new/ it will be added to the database, simultaneously a six character code will be generated and linked to the site.
+				If you then type the code provided to you in the address bar from the homepage it will redirect you to the original site. If the site is not legit or the code does not exist in the database, you will recive an error.</p>
+				<br>
+				<h4>Generate:</h4>
+				<p class="bg-success">https://carlcal-url-shortener-ms.herokuapp.com/new/http://google.com</p>
+				<h4>Output:</h4>
+				<p class="bg-danger">{ "original_url": "http://google.com", 
+				"short_url": "https://carlcal-url-shortener-ms.herokuapp.com/9kSDUP" }</p>
+				<h4>Use:</h4>
+				<p class="bg-info">https://carlcal-url-shortener-ms.herokuapp.com/9kSDUP -> google.com</p>
+			</div>
+		</div>
+	</body>
+</html>

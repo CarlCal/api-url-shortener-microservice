@@ -13,7 +13,8 @@ router
 									if (err) throw err
 
 									if(!item) {
-										res.json({ error: "Can't find the corresponding url in the database" }).end()
+										res.json({ error: "Faild to find the corresponding url in the database",
+															 example: "https://carlcal-url-shortener-ms.herokuapp.com/9kSDUP" }).end()
 									}	else {
 										res.redirect(item["original_url"])
 									}

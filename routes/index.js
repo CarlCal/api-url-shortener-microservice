@@ -3,9 +3,9 @@ const express = require("express")
 
 const router = express.Router()
 
+const indexAsset = __dirname + "/../public"
+
 router
-	.get("/", (req, res) => {
-		res.send("Home!")
-	})
+	.use(express.static(indexAsset))
 
 module.exports = router

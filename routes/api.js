@@ -7,9 +7,8 @@ const router = express.Router()
 
 var mongo = require("../db")
 
-function randomInt() {
-	return Math.floor(1 + Math.random() * 10)
-}
+var getRandomAsset = __dirname + "/../public/js/getRandomInt.js"
+var getRandomInt = require(getRandomAsset)
 
 router
 	.get("*", (req, res) => {	
@@ -29,19 +28,20 @@ router
 		}
 		
 		if (valid) {
-			res.json({ error: "You need to enter a real site, with a proper protocol" }).end()
+			res.json({ error: "You need to enter a real site, with proper protocol", 
+								 example: "https://carlcal-url-shortener-ms.herokuapp.com/new/http://google.com" }).end()
 		} else {
 			obj.original_url = url
 
 			var hashids = new Hashids(url)
-			obj.url_hash = hashids.encode(randomInt(), randomInt(), randomInt()) 
+			obj.url_hash = hashids.encode(getRandomInt.random(), getRandomInt.random(), getRandomInt.random()) 
 
 			mongo.db.collection("urls")
 				.insert(obj, (err, result) => {
 					if (err) throw err
 					
 					if(!result) {
-						res.json({ error: "Could't add that url to the database" })
+						res.json({ error: "Failed to add the url to the database" })
 					} else {
 						res.json({ original_url: obj.original_url, short_url: "https://carlcal-url-shortener-ms.herokuapp.com/"+obj.url_hash})
 					}
